@@ -77,3 +77,34 @@ La componente di persistenza dei dati (DAO) è coperta da unit test automatizzat
 1. **Clona la repository:**
    ```bash
    git clone [https://github.com/thomasleo1/Myshop.git](https://github.com/thomasleo1/Myshop.git)
+   
+2. **Configurazione del Database MySQL:**
+   * Apri MySQL Workbench o la CLI di MySQL e crea lo schema del database:
+     ```sql
+     CREATE DATABASE myshop;
+     ```
+   * Importa lo script `.sql` fornito nel progetto per generare la struttura delle tabelle e i dati iniziali.
+
+3. **Configurazione delle Credenziali:**
+   * Apri il file di configurazione del database (es. `Database.java` o `db.properties`).
+   * Modifica i parametri di connessione con le tue credenziali locali:
+     ```java
+     String url = "jdbc:mysql://localhost:3306/myshop";
+     String user = "root";
+     String password = "tuapassword";
+     ```
+
+4. **Avvio dell'Applicazione:**
+   * Apri il progetto con il tuo IDE (IntelliJ IDEA / Cursor).
+   * Assicurati che l'**SDK di Progetto** sia impostato su **JDK 17** o superiore.
+   * Se presente, lascia che il gestore delle dipendenze (Maven/Gradle) scarichi i pacchetti necessari (es. Driver JDBC MySQL, JUnit).
+   * Localizza la classe principale contenente il metodo `main` (es. `Main.java` o `App.java`) ed eseguila (`Run`).
+
+## 👨‍💻 Autore
+
+* **Thomas Leo**
+  * **GitHub:** [@thomasleo1](https://github.com/thomasleo1)
+  * **Email:** [thomas.leo@studenti.unisalento.it](mailto:thomas.leo@studenti.unisalento.it)
+  * **Ateneo:** Università del Salento
+  * **Corso di Laurea:** Ingegneria dell'Informazione
+  * **Insegnamento:** Principi di Ingegneria del Software
