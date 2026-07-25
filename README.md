@@ -104,7 +104,8 @@ The persistence layer (DAO) is covered by automated unit tests built with **JUni
 
 * **Thomas Leo**
   * **GitHub:** [@thomasleo1](https://github.com/thomasleo1)
-  * **Email:** [thomas.leo@studenti.unisalento.it](mailto:thomas.leo@studenti.unisalento.it)
+  * **Academic Email:** [thomas.leo@studenti.unisalento.it](mailto:thomas.leo@studenti.unisalento.it)
+  * **Personal Email:** [thomasleo2704@gmail.com](mailto:thomasleo2704@gmail.com)
   * **University:** Università del Salento
   * **Degree Program:** Information Engineering (*Ingegneria dell'Informazione*)
   * **Course:** Software Engineering Principles (*Principi di Ingegneria del Software*)
