@@ -4,107 +4,107 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/JUnit-Passing-brightgreen.svg)](https://junit.org/)
 
-**MyShop** è un'applicazione desktop in Java sviluppata per la gestione di totem multimediali all'interno di punti vendita di una grande catena di arredamento e prodotti per la casa. 
+**MyShop** is a Java desktop application developed to manage multimedia kiosks within retail stores of a major home furnishing and decor chain.
 
-Il progetto è stato sviluppato per l'esame di **Principi di Ingegneria del Software** (Università del Salento) seguendo la metodologia di sviluppo agile **Scrum** e applicando rigorosamente i principali **Design Pattern GoF**, architettura di persistenza tramite **DAO Pattern**, e test d'unità con **JUnit**.
+The project was developed for the **Software Engineering Principles** course (*Università del Salento*) following the **Scrum** agile development methodology and strictly applying core **GoF Design Patterns**, a **DAO Pattern** persistence architecture, and unit testing with **JUnit**.
 
 ---
 
-## 👥 Profilazione Utenti e Funzionalità
+## 👥 User Roles & Features
 
-L'applicazione gestisce un sistema di autorizzazioni a livelli in base al profilo utente:
+The application features a role-based access control system according to the user profile:
 
-* **👨‍💼 Amministratore:**
-  * Gestione completa del catalogo (CRUD su prodotti, prodotti compositi e servizi).
-  * Gestione gerarchica di categorie e sottocategorie (Mobili, Illuminazione, Montaggio, Trasporto, ecc.).
-  * Configurazione dei punti vendita fisici e assegnazione dei rispettivi Manager.
+* **👨‍💼 Administrator:**
+  * Full catalog management (CRUD operations on products, composite products, and services).
+  * Hierarchical management of categories and subcategories (Furniture, Lighting, Assembly, Shipping, etc.).
+  * Configuration of physical store locations and manager assignments.
 * **👔 Manager:**
-  * Gestione delle giacenze di magazzino e rifornimento scorte.
-  * Gestione degli ordini per articoli non disponibili.
-  * Moderazione utenti e invio di comunicazioni e-mail dirette ai clienti.
-  * Risposta ai feedback e alle recensioni sui prodotti del proprio punto vendita.
-* **🛍️ Utente Acquirente (Cliente):**
-  * Consultazione catalogo e disponibilità specifica per punto vendita.
-  * Creazione e salvataggio di **Liste d'Acquisto** esportabili in **PDF** con invio automatico via e-mail.
-  * Prenotazione di prodotti esauriti con recapito in negozio.
-  * Possibilità di lasciare recensioni e punteggi di gradimento (1-5 stelle) sugli articoli acquistati.
-* **👁️ Utente Guest:**
-  * Navigazione libera del catalogo globale e registrazione a uno specifico punto vendita.
+  * Warehouse stock management and inventory replenishment.
+  * Order management for out-of-stock items.
+  * User moderation and direct email communication with customers.
+  * Responding to feedback and reviews for products in their assigned store.
+* **🛍️ Buyer (Customer):**
+  * Catalog browsing and store-specific availability checks.
+  * Creation and saving of **Shopping Lists**, exportable to **PDF** with automated email dispatch.
+  * Reservations for out-of-stock products with store pickup.
+  * Rating (1–5 stars) and review submission for purchased products.
+* **👁️ Guest User:**
+  * Free browsing of the global catalog and registration to a specific store location.
 
 ---
 
-## 🏗️ Architettura Software & Design Patterns
+## 🏗️ Software Architecture & Design Patterns
 
-Il software è stato progettato enfatizzando l'estensibilità, il riuso del codice e il disaccoppiamento tra moduli.
+The software architecture emphasizes extensibility, code reusability, and loose coupling between modules.
 
-### Design Patterns Implementati
-* **Composite:** Utilizzato per modellare la struttura dei `ProdottiCompositi` (un articolo composto da più prodotti singoli).
-* **Strategy:** Implementato nei filtri della tabella catalogo per l'ordinamento dinamico degli articoli (es. per nome o prezzo).
-* **Factory:** Utilizzato per la generazione e gestione delle notifiche inviate dai Manager ai Clienti.
-* **Command:** Impiegato per incapsulare le transazioni e le operazioni sul Database.
-* **Singleton:** Applicato alle classi DAO e al servizio `UtenteBusiness` per garantire un'unica istanza d'accesso.
-* **Observer:** Utilizzato dai Listener degli eventi dell'Interfaccia Grafica (GUI).
-* **Decorator:** Usato per la gestione dinamica e la visualizzazione dei pulsanti UI in base al ruolo dell'utente loggato.
-* **Bridge:** Applicato nella generazione dei report PDF delle liste d'acquisto e nell'invio delle e-mail.
-
----
-
-## 🗄️ Modello Dati (MySQL)
-
-Il database relazionale MySQL include tabelle di mapping sofisticate per gestire le relazioni $N:M$:
-* **Gestione Catalogo:** `prodotto`, `prodotto_composito`, `servizio`, `categoria_prodotto`, `sottocategoria`, `produttore`.
-* **Ubicazione e Stock:** `magazzino`, `prodotti_magazzino` (associazione stock per negozio), `collocazione` (Corsia e Scaffale).
-* **Interazioni Utenti:** `lista_acquisto`, `ordine`, `recensione`, `associazione_prodotti_lista`.
+### Implemented Design Patterns
+* **Composite:** Used to model composite products (`ProdottiCompositi`), which are items made up of multiple individual products.
+* **Strategy:** Applied in catalog table filters for dynamic item sorting (e.g., by name or price).
+* **Factory:** Used to generate and handle notifications sent from Managers to Customers.
+* **Command:** Encapsulates transactions and operations performed on the Database.
+* **Singleton:** Applied to DAO classes and the `UtenteBusiness` service to ensure a single point of access.
+* **Observer:** Utilized by GUI event listeners.
+* **Decorator:** Handles dynamic rendering and display of UI buttons based on the logged-in user's role.
+* **Bridge:** Applied in PDF report generation for shopping lists and email notifications.
 
 ---
 
-## 🧪 Testing & Qualità del Codice
+## 🗄️ Data Model (MySQL)
 
-La componente di persistenza dei dati (DAO) è coperta da unit test automatizzati realizzati con **JUnit**:
-* `UtenteDAOTest`, `ProdottoDAOTest`, `ListaAcquistoDAOTest`, `PuntoVenditaDAOTest`, `MagazzinoDAOTest`, `RecensioneDAOTest`, e altri.
-* Verifica delle operazioni di CRUD, ricerca, associazione tabelle e controllo credenziali.
+The MySQL relational database includes mapping tables to manage $N:M$ relationships:
+* **Catalog Management:** `prodotto`, `prodotto_composito`, `servizio`, `categoria_prodotto`, `sottocategoria`, `produttore`.
+* **Location & Inventory:** `magazzino`, `prodotti_magazzino` (stock associated per store), `collocazione` (Aisle and Shelf).
+* **User Interactions:** `lista_acquisto`, `ordine`, `recensione`, `associazione_prodotti_lista`.
 
 ---
 
-## 💻 Come Eseguire il Progetto
+## 🧪 Testing & Code Quality
 
-### Requisiti Prerequisiti
-* **Java Development Kit (JDK):** Versione 17 o superiore
+The persistence layer (DAO) is covered by automated unit tests built with **JUnit**:
+* `UtenteDAOTest`, `ProdottoDAOTest`, `ListaAcquistoDAOTest`, `PuntoVenditaDAOTest`, `MagazzinoDAOTest`, `RecensioneDAOTest`, and others.
+* Covers CRUD operations, search queries, table joins, and credential verification.
+
+---
+
+## 💻 How to Run the Project
+
+### Prerequisites
+* **Java Development Kit (JDK):** Version 17 or higher
 * **Database:** MySQL Server
-* **IDE consigliato:** IntelliJ IDEA / Cursor
+* **Recommended IDE:** IntelliJ IDEA / Cursor
 
-### Procedura
-1. **Clona la repository:**
+### Setup Steps
+1. **Clone the repository:**
    ```bash
    git clone [https://github.com/thomasleo1/Myshop.git](https://github.com/thomasleo1/Myshop.git)
    
-2. **Configurazione del Database MySQL:**
-   * Apri MySQL Workbench o la CLI di MySQL e crea lo schema del database:
+2. **MySQL Database Configuration:**
+   * Open MySQL Workbench or MySQL CLI and create the database schema:
      ```sql
      CREATE DATABASE myshop;
      ```
-   * Importa lo script `.sql` fornito nel progetto per generare la struttura delle tabelle e i dati iniziali.
+   * Import the provided `.sql` script to generate the table structure and initial data.
 
-3. **Configurazione delle Credenziali:**
-   * Apri il file di configurazione del database (es. `Database.java` o `db.properties`).
-   * Modifica i parametri di connessione con le tue credenziali locali:
+3. **Credentials Configuration:**
+   * Open the database configuration file (e.g., `Database.java` or `db.properties`).
+   * Update the connection parameters with your local credentials:
      ```java
      String url = "jdbc:mysql://localhost:3306/myshop";
      String user = "root";
-     String password = "tuapassword";
+     String password = "yourpassword";
      ```
 
-4. **Avvio dell'Applicazione:**
-   * Apri il progetto con il tuo IDE (IntelliJ IDEA / Cursor).
-   * Assicurati che l'**SDK di Progetto** sia impostato su **JDK 17** o superiore.
-   * Se presente, lascia che il gestore delle dipendenze (Maven/Gradle) scarichi i pacchetti necessari (es. Driver JDBC MySQL, JUnit).
-   * Localizza la classe principale contenente il metodo `main` (es. `Main.java` o `App.java`) ed eseguila (`Run`).
+4. **Launching the Application:**
+   * Open the project using your IDE (IntelliJ IDEA / Cursor).
+   * Ensure the **Project SDK** is set to **JDK 17** or higher.
+   * If applicable, allow the dependency manager (Maven/Gradle) to download the required packages (e.g., MySQL JDBC Driver, JUnit).
+   * Locate the main class containing the `main` method (e.g., `Main.java` or `App.java`) and run it.
 
-## 👨‍💻 Autore
+## 👨‍💻 Author
 
 * **Thomas Leo**
   * **GitHub:** [@thomasleo1](https://github.com/thomasleo1)
   * **Email:** [thomas.leo@studenti.unisalento.it](mailto:thomas.leo@studenti.unisalento.it)
-  * **Ateneo:** Università del Salento
-  * **Corso di Laurea:** Ingegneria dell'Informazione
-  * **Insegnamento:** Principi di Ingegneria del Software
+  * **University:** Università del Salento
+  * **Degree Program:** Information Engineering (*Ingegneria dell'Informazione*)
+  * **Course:** Software Engineering Principles (*Principi di Ingegneria del Software*)
