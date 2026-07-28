@@ -1,4 +1,4 @@
-# 🛒 MyShop - Java Desktop Application & Software Architecture
+# MyShop - Java Desktop Application & Software Architecture
 
 [![Java](https://img.shields.io/badge/Java-17%2B-orange.svg)](https://www.java.com)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -10,30 +10,30 @@ The project was developed for the **Software Engineering Principles** course (*U
 
 ---
 
-## 👥 User Roles & Features
+## User Roles & Features
 
 The application features a role-based access control system according to the user profile:
 
-* **👨‍💼 Administrator:**
+* ** Administrator:**
   * Full catalog management (CRUD operations on products, composite products, and services).
   * Hierarchical management of categories and subcategories (Furniture, Lighting, Assembly, Shipping, etc.).
   * Configuration of physical store locations and manager assignments.
-* **👔 Manager:**
+* ** Manager:**
   * Warehouse stock management and inventory replenishment.
   * Order management for out-of-stock items.
   * User moderation and direct email communication with customers.
   * Responding to feedback and reviews for products in their assigned store.
-* **🛍️ Buyer (Customer):**
+* ** Buyer (Customer):**
   * Catalog browsing and store-specific availability checks.
   * Creation and saving of **Shopping Lists**, exportable to **PDF** with automated email dispatch.
   * Reservations for out-of-stock products with store pickup.
   * Rating (1–5 stars) and review submission for purchased products.
-* **👁️ Guest User:**
+* ** Guest User:**
   * Free browsing of the global catalog and registration to a specific store location.
 
 ---
 
-## 🏗️ Software Architecture & Design Patterns
+## Software Architecture & Design Patterns
 
 The software architecture emphasizes extensibility, code reusability, and loose coupling between modules.
 
@@ -49,7 +49,7 @@ The software architecture emphasizes extensibility, code reusability, and loose 
 
 ---
 
-## 🗄️ Data Model (MySQL)
+## Data Model (MySQL)
 
 The MySQL relational database includes mapping tables to manage $N:M$ relationships:
 * **Catalog Management:** `prodotto`, `prodotto_composito`, `servizio`, `categoria_prodotto`, `sottocategoria`, `produttore`.
@@ -58,7 +58,7 @@ The MySQL relational database includes mapping tables to manage $N:M$ relationsh
 
 ---
 
-## 🧪 Testing & Code Quality
+## Testing & Code Quality
 
 The persistence layer (DAO) is covered by automated unit tests built with **JUnit**:
 * `UtenteDAOTest`, `ProdottoDAOTest`, `ListaAcquistoDAOTest`, `PuntoVenditaDAOTest`, `MagazzinoDAOTest`, `RecensioneDAOTest`, and others.
@@ -66,7 +66,7 @@ The persistence layer (DAO) is covered by automated unit tests built with **JUni
 
 ---
 
-## 💻 How to Run the Project
+## How to Run the Project
 
 ### Prerequisites
 * **Java Development Kit (JDK):** Version 17 or higher
@@ -100,7 +100,7 @@ The persistence layer (DAO) is covered by automated unit tests built with **JUni
    * If applicable, allow the dependency manager (Maven/Gradle) to download the required packages (e.g., MySQL JDBC Driver, JUnit).
    * Locate the main class containing the `main` method (e.g., `Main.java` or `App.java`) and run it.
 
-## 👨‍💻 Author
+## Author
 
 * **Thomas Leo**
   * **GitHub:** [@thomasleo1](https://github.com/thomasleo1)
